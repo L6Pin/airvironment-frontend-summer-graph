@@ -1,0 +1,44 @@
+@import "../mixins";
+@import "../variables";
+
+.all-data-row {
+  margin: 0 16px 24px;
+  @include flex(column);
+  width: 325px;
+  .header-row {
+    @include flex(row, space-between);
+    margin-bottom: 8px;
+  }
+  .date-time-wrapper {
+    width: 70px;
+    text-align: center;
+    height: 48px;
+    @include flex(column, center, center);
+    .day {
+      text-transform: capitalize;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: bold;
+      opacity: 0.5;
+      width: 100%;
+      @include flex(unset, center);
+    }
+    .date {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .values,
+  .data-icon-wrapper {
+    text-align: center;
+    @include flex(unset, center, center);
+    width: 70px;
+  }
+  .values {
+    font-weight: bold;
+  }
+  .hour-data {
+    @include flex(row, space-between, center);
+    border-bottom: 1px solid $border-opacity-white;
+  }
+}

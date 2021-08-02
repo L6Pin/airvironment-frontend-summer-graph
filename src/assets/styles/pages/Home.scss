@@ -1,0 +1,73 @@
+@import "../variables";
+
+.home-page-container {
+  max-width: 752px;
+
+  margin: 45px auto 0 auto;
+  padding: 0 24px;
+  font-family: $roboto-black;
+  font-size: 28px;
+  line-height: 37px;
+  color: rgba($color-black, 0.16);
+  height: calc(100vh - 125px);
+
+  .home-page-header {
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+
+    .logo {
+      text-transform: uppercase;
+    }
+
+    .white-text {
+      color: $color-white;
+    }
+
+    .red-text {
+      color: $color-dark-red;
+    }
+  }
+
+  .home-page-content {
+    margin-top: 79px;
+    font-family: $roboto;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+    vertical-align: middle;
+    color: $color-white;
+
+    .list {
+      padding-inline-start: 25px;
+
+      .list-item {
+        span {
+          margin-left: -10px;
+        }
+      }
+    }
+
+    .link {
+      color: $color-red;
+    }
+  }
+
+  .signature {
+    width: 100%;
+    text-transform: uppercase;
+    text-align: end;
+    margin-top: 48px;
+  }
+}
+
+@media only screen and (max-width: $mobile) {
+  .home-page-container {
+    margin-top: 22px;
+
+    .home-page-content {
+      margin-top: 12px;
+    }
+  }
+}

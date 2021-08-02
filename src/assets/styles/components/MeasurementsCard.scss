@@ -1,0 +1,110 @@
+@import "../variables";
+
+.measurementCard {
+  width: 180px;
+  height: 220px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  color: $color-white;
+  font-family: Roboto;
+  background: $border-opacity-white;
+  margin: 10px;
+
+  & hr {
+    height: 1px;
+    background-color: $color-white;
+    border: none;
+    width: 146px;
+    margin: 0 auto;
+  }
+
+  & .bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 5px;
+
+    & .dayDateContainer {
+      text-align: center;
+
+      & .day {
+        font-weight: bold;
+        font-size: 28px;
+      }
+
+      & .date {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .measurementCardBottomContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    & .readingRight {
+      display: flex;
+      justify-content: flex-end;
+      width: 80%;
+
+      & p {
+        font-weight: bold;
+
+        & span {
+          font-weight: normal;
+        }
+
+        & .ppb {
+          font-size: 12px;
+        }
+      }
+      font-size: 24px;
+    }
+
+    & .readingLeft {
+      display: flex;
+      align-items: center;
+    }
+
+    & .readingLeft {
+      & .readingLeftContainer {
+        display: flex;
+
+        & .readingIcon {
+          & img {
+            height: 100%;
+          }
+        }
+
+        & .maxAndMin {
+          margin-left: 4px;
+
+          & .max,
+          .min {
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+
+            &__reading {
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
