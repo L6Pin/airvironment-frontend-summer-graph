@@ -8,9 +8,9 @@ export default function configureStore(initialState) {
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   return createStore(
     rootReducer,
-    // {
-    //   ...initialState,
-    // },
+    {
+      ...initialState,
+    },
     composeEnchancers(applyMiddleware(reduxImmutableStateInvariant(), thunk))
   );
 }

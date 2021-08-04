@@ -1,23 +1,27 @@
 import React from "react";
 import "../assets/styles/components/Header.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import FilterOpenButton from "../assets/icons/FilterOpenButton";
 
 const Header = () => {
   return (
     <div className="header">
       <div className="logo-text">
         <Link to="/">
-          <span className="opacity all-caps">air</span>
-          vironment
+            <h1><span>Air</span>vironment</h1>
         </Link>
       </div>
-      <div className="menu opacity">
-        <Link to="all-data">
-          <div className="all-caps">all data</div>
-        </Link>
-        <Link to="/averages">
-          <div className="all-caps">averages</div>
-        </Link>
+
+        <div className="nav">
+            <NavLink to="/all-data" activeClassName="selected">All data</NavLink>
+            <NavLink to="/averages" activeClassName="selected">Averages</NavLink>
+        </div>
+
+
+
+
+      <div className="filterOpenButton">
+        <FilterOpenButton />
       </div>
     </div>
   );

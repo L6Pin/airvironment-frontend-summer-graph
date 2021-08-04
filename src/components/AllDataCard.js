@@ -2,14 +2,19 @@ import React from "react";
 import "../assets/styles/components/AllDataCard.scss";
 import { TemperatureIcon, HumidityIcon, PollutionIcon } from "../assets/icons";
 import AllDataCardRow from "./AllDataCardRow";
+import useDates from "../hooks/useDates";
 
-const AverageCard = ({ day }) => {
+const AllDataCard = ({ day }) => {
+
+
+
   return (
+
     <div className="all-data-row">
       <div className="header-row">
         <div className="date-time-wrapper">
-          <div className="day">dan</div>
-          <div className="date">datum</div>
+          <div className="day">{useDates().returnDay(day[0].created)}</div>
+          <div className="date">{useDates().returnDate(day[0].created)}</div>
         </div>
         <div className="data-icon-wrapper">
           <TemperatureIcon className="data-icon" />
@@ -22,11 +27,14 @@ const AverageCard = ({ day }) => {
         </div>
       </div>
 
-      {day.map((row) => (
-        <div className="hour-data">{<AllDataCardRow row={row} />}</div>
+      {day.map((row, index) => (
+        <div className="hour-data" key={index} >
+          <AllDataCardRow  row={row}  />
+        </div>
       ))}
+
     </div>
   );
 };
 
-export default AverageCard;
+export default AllDataCard;

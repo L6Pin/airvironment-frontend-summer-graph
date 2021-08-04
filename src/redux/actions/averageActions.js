@@ -1,6 +1,5 @@
 import * as types from "./actionTypes";
 import * as measurementsApi from "../../api/measurements";
-import { LOAD_MEASUREMENT, LOAD_MEASUREMENT_SUCCESS } from "./actionTypes";
 
 /**
  * Load average values requested.
@@ -8,6 +7,10 @@ import { LOAD_MEASUREMENT, LOAD_MEASUREMENT_SUCCESS } from "./actionTypes";
  */
 export function loadAverageValuesRequest() {
   return { type: types.AVERAGE_MEASUREMENTS_REQUEST };
+}
+
+export function loadMeasurementsRequest() {
+  return { type: types.LOAD_MEASUREMENT_REQUEST };
 }
 
 /**
@@ -28,9 +31,13 @@ export function loadAverageValuesFailure(error) {
   return { type: types.AVERAGE_MEASUREMENTS_FAILURE, error };
 }
 
+export function loadMeasurementsFaliure(error) {
+  return { type: types.LOAD_MEASUREMENT_FAILURE, error };
+}
+
 export function loadMeasurements(response) {
   return {
-    type: LOAD_MEASUREMENT_SUCCESS,
+    type: types.LOAD_MEASUREMENT_SUCCESS,
     response,
   };
 }
@@ -57,13 +64,14 @@ export function loadAverageValues(params) {
 
 export function loadAllMeasurements(params) {
   return function (dispatch) {
+    dispatch(loadMeasurementsRequest());
     measurementsApi
       .getMeasurements(params)
       .then((response) => {
         dispatch(loadMeasurements(response));
       })
       .catch((error) => {
-        // dispatch(loadAverageValuesFailure(JSON.parse(error.message)));
+        dispatch(loadMeasurementsFaliure(JSON.parse(error.message)));
         console.log("Error loading average values.");
       });
   };

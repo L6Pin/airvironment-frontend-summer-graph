@@ -5,6 +5,7 @@
   border-bottom: 1px solid $color-white;
   display: flex;
   align-items: center;
+  position: relative;
   //position: fixed;
   //width: 100%;
 }
@@ -34,10 +35,74 @@
   cursor: pointer;
 }
 
+.menu a {
+  margin-right: 20px;
+}
+
 .opacity {
   opacity: 0.5;
 }
 
 .all-caps {
   text-transform: uppercase;
+}
+
+.all-caps span {
+  font-weight: bold;
+}
+
+.selected {
+  color: $color-white;
+}
+
+.filterOpenButton {
+  position: absolute;
+  right: 15px;
+  bottom: -25%;
+  z-index: 30;
+}
+
+h1{
+  font-size: 36px;
+  font-weight: 300;
+
+  & span {
+    color: rgba($color-white, 0.5);
+    font-weight: bold;
+  }
+}
+
+.nav{
+
+  margin-top: 16px;
+  margin-left: 80px;
+
+  & a {
+    color: rgba($color-white, 0.5);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:last-of-type{
+      margin-left: 20px;
+    }
+  }
+
+  & .selected{
+    color: $color-white
+  }
+
+}
+
+
+@media (max-width: $mobile) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: unset;
+    justify-content: center;
+  }
+
+  .nav{
+    margin: 5px 0 5px 30px;
+  }
 }

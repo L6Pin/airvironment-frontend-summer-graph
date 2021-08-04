@@ -8,6 +8,8 @@ export default function LoadMeasurementsReducer(
   switch (action.type) {
     case types.LOAD_MEASUREMENT_SUCCESS:
       return action.response;
+    case types.LOAD_MEASUREMENT_FAILURE:
+      return state;
     default:
       return state;
   }

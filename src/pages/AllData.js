@@ -32,15 +32,15 @@ const AllData = ({ getMeasurements, loadMeasurements }) => {
           currentGroup = [];
         }
       });
-      setDataArray(groupedArray);
+      setDataArray(groupedArray.reverse());
     }
     groupArray(loadMeasurements);
   }, [loadMeasurements, isSameDay]);
 
   return (
     <div className="all-data-container">
-      {dataArray.map((day) => (
-        <AllDataCard day={day} />
+      {dataArray.map((day, i) => (
+        <AllDataCard day={day} key={i}  />
       ))}
     </div>
   );

@@ -24,7 +24,7 @@ export default function AverageValuesReducer(
 
       let dataGroupedByDate = groupBy(action.response, "date");
 
-      return dataGroupedByDate.reverse().map((data) => {
+      return dataGroupedByDate.map((data) => {
         let valueSum = {
           temperatureSum: 0,
           humiditySum: 0,

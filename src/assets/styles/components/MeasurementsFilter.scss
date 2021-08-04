@@ -1,0 +1,180 @@
+@import "../variables";
+@import "../mixins";
+
+.measurementFilter {
+  position: absolute;
+  width: 100%;
+  height: 130px;
+  padding-left: 260px;
+  padding-right: 15px;
+  background: $color-white;
+  color: $color-black;
+  @include flex(row, unset, center);
+
+  & .topRow{
+
+    display: flex;
+    align-items: center;
+
+  & .date-range {
+    display: flex;
+
+    & input[type="date"] {
+      width: 140px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      background: #10beb8;
+      padding: 5px;
+      font-size: 14px;
+      color: $color-white;
+      font-family: Roboto;
+
+      &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+      }
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    & .date {
+      position: relative;
+      margin-right: 30px;
+
+      & p {
+        color: #10beb8;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      & .calendarIcon {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+    }
+
+    & .range {
+      position: relative;
+
+      .rangeOpenButton {
+        position: absolute;
+        bottom: 3.5px;
+        right: 5px;
+      }
+
+      & p {
+        color: #10beb8;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      & .selector {
+        width: 140px;
+
+        & select {
+          // A reset of styles, including removing the default dropdown arrow
+          appearance: none;
+          // Additional resets for further consistency
+          background-color: #10beb8;
+          border: none;
+          margin: 0;
+          width: 100%;
+          font-size: inherit;
+          color: $color-white;
+          border-radius: 50px;
+          padding: 7.5px 5px;
+          font-size: 14px;
+          outline: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  }
+
+  & .dataType-confirm {
+    @include flex(row, space-between, center);
+    width: 100%;
+
+    & .dataType {
+      width: 192px;
+      height: 80px;
+      //background: gray;
+
+      & .title {
+        font-weight: bold;
+        font-size: 14px;
+        color: #10beb8;
+      }
+
+      & .dataTypeContainer {
+        height: 100%;
+        @include flex(row, space-between, center);
+
+        & .singleDataType {
+          width: 48px;
+          height: 48px;
+          //background: yellow;
+          position: relative;
+          @include flex(row, center, center);
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          & .check {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+
+  .measurementFilter{
+    padding: 0 15px 0 30px;
+    @include flex(column, space-evenly);
+    height: 216px;
+
+   & .topRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+  }
+}
+
+@media (max-width: $mobile) {
+  .measurementFilter{
+
+    & .topRow{
+      flex-direction: column;
+    }
+
+    & .dataType-confirm{
+
+      & .confirm{
+        display: flex;
+        align-items: flex-end;
+        height: 100%;}
+    }
+  }
+
+  
+}

@@ -4,4 +4,6 @@
   padding-top: 48px;
   width: fit-content;
   @include flex(row, center, unset, wrap);
+  overflow-y: auto;
+  height: calc(100vh - 80px);
 }

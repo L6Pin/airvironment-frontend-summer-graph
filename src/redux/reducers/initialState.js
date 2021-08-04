@@ -1,6 +1,6 @@
 const initialState = {
   averageValues: [],
-  loadMeasurements: {},
+  loadMeasurements: [],
 };
 
 export default initialState;

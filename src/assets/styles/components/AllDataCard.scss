@@ -13,7 +13,7 @@
     width: 70px;
     text-align: center;
     height: 48px;
-    @include flex(column, center, center);
+    @include flex(column, center, flex-end);
     .day {
       text-transform: capitalize;
       font-size: 28px;
@@ -21,10 +21,10 @@
       font-weight: bold;
       opacity: 0.5;
       width: 100%;
-      @include flex(unset, center);
+      @include flex(unset, flex-end);
     }
     .date {
-      font-size: 12px;
+      font-size: 10px;
       line-height: 14px;
     }
   }
