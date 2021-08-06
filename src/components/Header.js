@@ -13,7 +13,7 @@ const Header = () => {
       </div>
 
         <div className="nav">
-            <NavLink to="/all-data" activeClassName="selected">All data</NavLink>
+            {/* <NavLink to="/all-data" activeClassName="selected">All data</NavLink> */}
             <NavLink to="/averages" activeClassName="selected">Averages</NavLink>
         </div>
 
