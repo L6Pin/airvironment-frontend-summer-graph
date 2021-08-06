@@ -9,9 +9,6 @@ export function loadAverageValuesRequest() {
   return { type: types.AVERAGE_MEASUREMENTS_REQUEST };
 }
 
-export function loadMeasurementsRequest() {
-  return { type: types.LOAD_MEASUREMENT_REQUEST };
-}
 
 /**
  * Average values successfully loaded action creator.
@@ -31,16 +28,23 @@ export function loadAverageValuesFailure(error) {
   return { type: types.AVERAGE_MEASUREMENTS_FAILURE, error };
 }
 
-export function loadMeasurementsFaliure(error) {
-  return { type: types.LOAD_MEASUREMENT_FAILURE, error };
+//moje stvari
+
+export function loadMeasurementsRequest() {
+  return { type: types.LOAD_MEASUREMENT_REQUEST };
 }
 
-export function loadMeasurements(response) {
+export function loadMeasurementsSuccess(response) {
   return {
     type: types.LOAD_MEASUREMENT_SUCCESS,
     response,
   };
 }
+
+export function loadMeasurementsFaliure(error) {
+  return { type: types.LOAD_MEASUREMENT_FAILURE, error };
+}
+
 
 /**
  * Fires a get request to fetch average values and returns the received response.
@@ -57,7 +61,7 @@ export function loadAverageValues(params) {
       })
       .catch((error) => {
         dispatch(loadAverageValuesFailure(JSON.parse(error.message)));
-        console.log("Error loading average values.");
+        console.log("Error loading  average values.");
       });
   };
 }
@@ -68,7 +72,7 @@ export function loadAllMeasurements(params) {
     measurementsApi
       .getMeasurements(params)
       .then((response) => {
-        dispatch(loadMeasurements(response));
+        dispatch(loadMeasurementsSuccess(response));
       })
       .catch((error) => {
         dispatch(loadMeasurementsFaliure(JSON.parse(error.message)));
