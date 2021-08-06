@@ -6,8 +6,13 @@ export default function LoadMeasurementsReducer(
   action
 ) {
   switch (action.type) {
-    case types.LOAD_MEASUREMENT_SUCCESS:
-      return action.response;
+    case types.LOAD_MEASUREMENT_REQUEST:
+      return state;
+    case types.LOAD_MEASUREMENT_SUCCESS: {
+      let latestData = action.response
+      let latestDataTrimmed = latestData.reverse().splice(0, 5)
+      return latestDataTrimmed
+    }
     case types.LOAD_MEASUREMENT_FAILURE:
       return state;
     default:

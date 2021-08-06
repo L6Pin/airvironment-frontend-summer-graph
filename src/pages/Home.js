@@ -1,121 +1,110 @@
 import React from "react";
 import "../assets/styles/pages/Home.scss";
-// import { MeasurementsCard } from "../components";
+import "../assets/styles/components/Chart.scss";
+import moment from "moment";
+import { loadAllMeasurements } from "../redux/actions/averageActions";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  LabelList,
+} from "recharts";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
-function Home() {
+function Home({ graphData, getMeasurements }) {
+  const [day, setDay] = useState("");
+
+  useEffect(() => {
+    const parms = {
+      all: true,
+    };
+    getMeasurements(parms);
+  }, [getMeasurements]);
+
+  useEffect(() => {
+    setDay(graphData[0]?.created);
+  }, [graphData]);
+
+  let graphDataDay = [];
+  graphData.forEach((element) => {
+    graphDataDay.push({
+      ...element,
+      test: moment(element.created).format("HH:MM"),
+    });
+  });
+  graphDataDay.reverse();
+
   return (
     <>
-      <div className="home-page-container">
-        <div className="home-page-header">
-          Welcome to the <span className="logo white-text">red</span>
-          <span className="logo red-text">black</span>
-          <span className="logo white-text">tree</span> internship 2021
+      {graphData && graphData.length && (
+        <div className="chart-page">
+          <div className="chart-container">
+            <div className="day-info">
+              <div className="top-row">
+                <p className="day">
+                  {moment(graphData[0].created).format("dddd")}
+                </p>
+                <p className="temp">{graphData[0].temperature}°C</p>
+              </div>
+              <div className="bottom-row">
+                <div className="date-location">
+                  <p>{moment(graphData[0].created).format("DD MMMM YYYY")}</p>
+                  <p>Belgrade</p>
+                </div>
+                
+                <div className="measurements">
+                  <p>Latest</p>
+                  <p>measurements</p>
+                </div>
+              </div>
+            </div>
+            <div className="chart">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={graphDataDay}
+                  margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+                >
+                  <Line
+                    type="monotone"
+                    dataKey="temperature"
+                    stroke="#fff"
+                    isAnimationActive={false}
+                  >
+                    <LabelList
+                      dataKey="temperature"
+                      position="top"
+                      offset="10"
+                    />
+                  </Line>
+                  <XAxis
+                    dataKey="test"
+                    className="fontName"
+                    offset="10"
+                    margin={{ top: 5, right: 50, bottom: 20, left: 50 }}
+                  />
+                  <YAxis hide="true" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
         </div>
-        <div className="home-page-content">
-          Device we use is Raspberry Pi and, in our case, it measures
-          temperature, humidity and pollution of the air around us.
-          <br />
-          In the first week of internship, you were using this little buddy’s
-          data stored in database to create{" "}
-          <a
-            href="https://airvironment.live/api/measurements"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API endpoints
-          </a>{" "}
-          which we will fetch and utilize to bring that data to our screens and
-          present it graphically.
-          <br />
-          <br />
-          <a
-            href="https://reactjs.org"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ReactJS
-          </a>{" "}
-          is JavaScript library for building user interfaces and UI components
-          and we will be using it to manipulate with our data in several ways:
-          <ul className="list">
-            <li className="list-item">
-              <span>Air parameters for each of the past days</span>
-            </li>
-            <li className="list-item">
-              <span>
-                Air parameters for each of the past days in average values
-              </span>
-            </li>
-            <li className="list-item">
-              <span>Air parameters for the for the specific day</span>
-            </li>
-            <li className="list-item">
-              <span>All of the above using responsive design</span>
-            </li>
-          </ul>
-          <br />
-          Also we will be get used with some React libraries and features:{" "}
-          <a
-            href="https://redux.js.org"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Redux
-          </a>
-          ,{" "}
-          <a
-            href="https://reactjs.org/docs/hooks-intro.html"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Hooks
-          </a>
-          ,{" "}
-          <a
-            href="https://prettier.io"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Prettier
-          </a>
-          ,{" "}
-          <a
-            href="https://momentjs.com"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Moment.js
-          </a>
-          ,{" "}
-          <a
-            href="https://reactrouter.com"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            React router
-          </a>
-          ,{" "}
-          <a
-            href="https://www.w3schools.com/react/react_lifecycle.asp"
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            life cycle
-          </a>
-          …
-        </div>
-        <p className="signature">Frontend team</p>
-      </div>
+      )}
     </>
   );
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    graphData: state.loadMeasurements ? state.loadMeasurements : [],
+  };
+}
+
+const mapDispatchToProps = {
+  getMeasurements: loadAllMeasurements,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
