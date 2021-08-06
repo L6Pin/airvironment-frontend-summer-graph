@@ -66,9 +66,19 @@
         margin: 0;
       }
 
+      .top-row{
+        .day{
+          font-size: 20px;
+        }
+        .temp{
+          font-size: 20px;
+        }
+      }
+
       .bottom-row {
         .date-location {
           display: unset;
+          font-size: 12px;
 
           & p:last-child {
             margin: unset;
