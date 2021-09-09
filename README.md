@@ -1,6 +1,6 @@
 # Temperature data visualisation - airvironment-frontend-summer
 
-Temperature visualisation was created with [Recharts](https://recharts.org/) and the data gathered for the airvironment-frontend-summer project.
+Temperature visualisation was created with [Recharts](https://recharts.org/) and the data gathered for the [airvironment-frontend-summer](https://github.com/L6Pin/airvironment-frontend-summer)  project.
 The graph displays the following:
 - Day of week
 - Date
@@ -8,5 +8,6 @@ The graph displays the following:
 - A graph showing the last five temperature measurements
 
 <img src="https://i.ibb.co/6J3sjWW/download.png">
+
 
 
